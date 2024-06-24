@@ -6,23 +6,41 @@ namespace RPS_Game
     {
         static void Main(string[] args)
         {
-            Player playerOne = new Player("Ibrahim");
-            Player playerTwo = new Player("AI");
 
-            RPSGame game = new RPSGame(playerOne, playerTwo);
-            game.PlayGame();
+            try
+            {
+                Player playerOne = new Player("Ibrahim");
+                Player playerTwo = new Player("AI");
 
-            if (playerOne.Score > playerTwo.Score)
-            {
-                Console.WriteLine($"{playerOne.Name} is the overall winner!");
+                RPSGame game = new RPSGame(playerOne, playerTwo);
+                game.PlayGame();
+
+                if (playerOne.Score > playerTwo.Score)
+                {
+                    Console.WriteLine($"{playerOne.Name} is the overall winner!");
+                }
+                else if (playerTwo.Score > playerOne.Score)
+                {
+                    Console.WriteLine($"{playerTwo.Name} is the overall winner!");
+                }
+                else
+                {
+                    Console.WriteLine("The game is a draw!");
+                }
             }
-            else if (playerTwo.Score > playerOne.Score)
+
+            catch (FormatException e)
             {
-                Console.WriteLine($"{playerTwo.Name} is the overall winner!");
+                Console.WriteLine("Please , Try Again.");
+                Console.WriteLine(e.ToString());
             }
-            else
+            catch (Exception e)
             {
-                Console.WriteLine("The game is a draw!");
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                Console.WriteLine("The Game Finished.");
             }
         }
     }
